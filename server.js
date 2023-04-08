@@ -22,6 +22,13 @@ app.get('/', (req, res) => {
 const languagesController = require('./controllers/languages_controller.js')
 app.use('/languages', languagesController)
 
+//Random language selection
+app.get("/languages/random", (req, res) => {
+  const randomIndex = Math.floor(Math.random() * languages.length);
+  const randomLanguage = languages[randomIndex];
+  res.send(`Random language: ${randomLanguage}`);
+});
+
 // LISTEN
 app.listen(PORT, () => {
   console.log('Greetings! From port: ', PORT);
